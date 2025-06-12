@@ -1,8 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://db86604lj77fp"]
+[gd_scene load_steps=43 format=3 uid="uid://db86604lj77fp"]
 
 [ext_resource type="PackedScene" uid="uid://lcq26ft38s4f" path="res://models/monitor/monitor.tscn" id="1_3e7dm"]
+[ext_resource type="PackedScene" uid="uid://byin4yyt3px4b" path="res://models/portable_monitor/portable_monitor.tscn" id="1_in4ui"]
 [ext_resource type="Shader" uid="uid://byfph6jqvo55x" path="res://GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="2_jwaux"]
 [ext_resource type="AudioStream" uid="uid://dl00n0vnyvtic" path="res://assets/sounds/error-83494.mp3" id="2_qphb6"]
+[ext_resource type="PackedScene" uid="uid://dojbngi0mh43c" path="res://models/SOCORDIS/SOCORDIS.tscn" id="3_6hbky"]
 [ext_resource type="Shader" uid="uid://wbhbvkm7n8qc" path="res://assets/shaders/posterization test.gdshader" id="3_7jj4f"]
 [ext_resource type="Script" uid="uid://b7u523lmtuhmb" path="res://scripts/office_manager.gd" id="7_2knxt"]
 [ext_resource type="AudioStream" uid="uid://bxmpr2apksupd" path="res://assets/sounds/ac-unit-67600.mp3" id="7_fmddn"]
@@ -39,6 +41,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0.065, -0.587)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PortableMonitor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.13857, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PortableMonitor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ujkv6"]
 resource_name = "left"
@@ -54,6 +80,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ywr3"]
+resource_name = "left-back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gdafm"]
@@ -86,6 +128,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qg43x"]
+resource_name = "monitor-back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_kviqm"]
@@ -192,54 +250,6 @@ tracks/0/keys = {
 "values": [Vector3(0, -1.5708, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6hbky"]
-resource_name = "right-monitor"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qg43x"]
-resource_name = "monitor-back"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8ywr3"]
-resource_name = "left-back"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_t1nwb"]
 resource_name = "right-back"
 length = 0.3
@@ -256,6 +266,102 @@ tracks/0/keys = {
 "values": [Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6hbky"]
+resource_name = "right-monitor"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uwvu6"]
+resource_name = "monitor-open-portable"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortableMonitor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.75, 1),
+"update": 0,
+"values": [Vector3(0, -1.139, -2), Vector3(0, -0.25, -0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortableMonitor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1.5, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7i2nt"]
+resource_name = "monitor-close-portable"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortableMonitor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.75, 1),
+"update": 0,
+"values": [Vector3(0, -0.25, -0.1), Vector3(0, -1.139, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortableMonitor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.807616)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_in4ui"]
 _data = {
 &"RESET": SubResource("Animation_fmddn"),
@@ -265,8 +371,10 @@ _data = {
 &"monitor": SubResource("Animation_o23kw"),
 &"monitor-back": SubResource("Animation_qg43x"),
 &"monitor-close": SubResource("Animation_kviqm"),
+&"monitor-close-portable": SubResource("Animation_7i2nt"),
 &"monitor-left": SubResource("Animation_2knxt"),
 &"monitor-open": SubResource("Animation_jp1e5"),
+&"monitor-open-portable": SubResource("Animation_uwvu6"),
 &"monitor-right": SubResource("Animation_in4ui"),
 &"right": SubResource("Animation_wruke"),
 &"right-back": SubResource("Animation_t1nwb"),
@@ -404,6 +512,22 @@ _data = {
 &"putdown": SubResource("Animation_gnmmx")
 }
 
+[sub_resource type="Environment" id="Environment_6hbky"]
+ambient_light_source = 2
+glow_levels/1 = 4.3
+fog_enabled = true
+fog_light_color = Color(0.517647, 1, 0.607843, 1)
+fog_light_energy = 0.4
+fog_height = 0.01
+fog_height_density = 0.1
+fog_depth_end = 4000.0
+volumetric_fog_density = 1.0
+volumetric_fog_albedo = Color(0, 1, 0, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_length = 1024.0
+volumetric_fog_detail_spread = 3.13834
+volumetric_fog_ambient_inject = 16.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qphb6"]
 shader = ExtResource("2_jwaux")
 shader_parameter/SCREEN_WIDTH = 1280.0
@@ -505,6 +629,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_in4ui")
 }
 
+[node name="PortableMonitor" parent="SubViewportContainer/SubViewport/Office/Camera3D" instance=ExtResource("1_in4ui")]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, -1.13857, 0)
+
 [node name="deskMonitor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.862673, -1.20747)
 material = SubResource("StandardMaterial3D_n0wcf")
@@ -567,6 +694,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49579, -0.705, 0.799)
 size = Vector3(1, 0.898926, 1)
 material = SubResource("StandardMaterial3D_n0wcf")
 
+[node name="SOCORDIS" parent="SubViewportContainer/SubViewport/Office/deskRight" instance=ExtResource("3_6hbky")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.282073, 0.45, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Office"]
+environment = SubResource("Environment_6hbky")
+
 [node name="dithering" type="MeshInstance2D" parent="SubViewportContainer/SubViewport"]
 material = SubResource("ShaderMaterial_qphb6")
 position = Vector2(640, 360)
@@ -606,7 +739,9 @@ offset_right = 1280.0
 offset_bottom = 721.0
 theme_override_font_sizes/font_size = 32
 text = "Press left or right to move.
-Press enter to interact with objects."
+Press enter to interact with objects.
+Press escape to open the portable monitor
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

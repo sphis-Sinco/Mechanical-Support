@@ -32,7 +32,7 @@ func calculate_pay():
 		shift_pay_debug_message('systems fixed and malfunctioned ('+str(val)+')')
 	
 	if SYSTEMS_FIXED > SYSTEMS_MALFUNCTIONED or SYSTEMS_FIXED == SYSTEMS_MALFUNCTIONED:
-		SHIFT_MESSAGE += management_appriciates + ' the many fixex of malfunctioned systems'
+		SHIFT_MESSAGE += management_appriciates + ' the many fixes of malfunctioned systems'
 	elif SYSTEMS_MALFUNCTIONED > SYSTEMS_FIXED:
 		SHIFT_MESSAGE += management_doesnt_appriciate + ' the lack of system fixes'
 	
@@ -42,10 +42,14 @@ func calculate_pay():
 		shift_pay_debug_message('attempts quitting while fixing system ('+str(val)+')')
 	
 	if SYSTEMS_FIXED > ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM:
-		SHIFT_MESSAGE += management_appriciates + ' the prioritization of fixing systems'
+		SHIFT_MESSAGE += management_appriciates + ' not trying to close the monitor while fixing system'
+		
+		if ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM > 2:
+			SHIFT_MESSAGE += ' (mostly)'
+			
 		multiplier += float(ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM) / 10
 	elif ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM > SYSTEMS_FIXED:
-		SHIFT_MESSAGE += management_doesnt_appriciate + ' the lack of prioritization of fixing systems'
+		SHIFT_MESSAGE += management_doesnt_appriciate + ' trying to close the monitor while fixing systems'
 		multiplier += float(ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM) / 100
 	
 	

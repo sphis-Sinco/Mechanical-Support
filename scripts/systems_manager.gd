@@ -23,6 +23,10 @@ var SYSTEM_IN_REPAIR = ''
 var SYSTEM_REPAIR_TICKS_MIN = 200
 var SYSTEM_REPAIR_TICKS_MAX = 800
 
+var SYSTEM_REPAIR_TICKS_PORTABLE_MULTIPLIER = 4
+var SYSTEM_REPAIR_TICKS_MIN_PORTABLE = SYSTEM_REPAIR_TICKS_MIN * SYSTEM_REPAIR_TICKS_PORTABLE_MULTIPLIER
+var SYSTEM_REPAIR_TICKS_MAX_PORTABLE = SYSTEM_REPAIR_TICKS_MAX * SYSTEM_REPAIR_TICKS_PORTABLE_MULTIPLIER
+
 var SYS_REP_UP1 = 0
 var SYS_REP_UP2 = 0
 var SYS_REP_UP3 = 0
@@ -46,7 +50,11 @@ var audio_light : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 var audio_hvac : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 
 var SEEN_TUTORIAL = false
+
 var SEEN_PAY = false
+var ACCEPTED_PAY = false
+
+var IN_PORTABLE_MONITOR = false
 
 func _ready():
 	sys_rep_update()
@@ -127,6 +135,7 @@ func fixed_system_check(system_name):
 
 func system_malfunction():
 	var rand = randi_range(1,6)
+	
 	match rand:
 		# 0:
 		# 	SYSTEM_HVAC = sabotage_system('HVAC')
@@ -159,7 +168,7 @@ func sabotage_system(system_print : String, system_value : String):
 func system_check(system_name,system):
 	if SYSTEM_IN_REPAIR.to_lower() == system_name and system == STAT_FUNCTIONAL:
 		SYSTEM_REPAIR_TICKS = 0
-		print('False fixing: '+system_name)
+		# print('False fixing: '+system_name)
 		system_repair_not_required.emit(SYSTEM_IN_REPAIR)
 
 func sys_rep_update():
@@ -181,3 +190,68 @@ signal system_repair_update(system_name, percent)
 signal error_sfx()
 
 signal shift_ended()
+
+func blank_save_file():
+	return {
+		'M': 0,
+		'SF': 0,
+		'SM': 0,
+		'QWFS': 0,
+		'CSP': 0
+	}
+
+
+const savefile_name = 'save.data'
+var SAVE_FILE = {}
+var SAVE_STRING = ""
+
+func load_save():
+	if not FileAccess.file_exists("res://"+savefile_name):
+		save()
+		return # Error! We don't have a save to load.
+	
+	var save_file = FileAccess.open("res://"+savefile_name, FileAccess.READ)
+	SAVE_FILE = JSON.parse_string(save_file.get_as_text())
+	save_file.close()
+
+func save():
+	var unsaved_save = {
+		'M': StatsManager.SHIFT_PAY,
+		'SF': StatsManager.SYSTEMS_FIXED,
+		'SM': StatsManager.SYSTEMS_MALFUNCTIONED,
+		'QWFS': StatsManager.ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM,
+		'CSP': StatsManager.SHIFT_PERCENT_CHECKS
+	}
+	
+	print('before')
+	print(SAVE_FILE)
+	
+	SAVE_FILE.M += unsaved_save.M
+	SAVE_FILE.SF += unsaved_save.SF
+	SAVE_FILE.SM += unsaved_save.SM
+	SAVE_FILE.QWFS += unsaved_save.QWFS
+	SAVE_FILE.CSP += unsaved_save.CSP
+	
+	print('after')
+	print(SAVE_FILE)
+	
+	var save_file = FileAccess.open("res://"+savefile_name, FileAccess.WRITE)
+	save_file.store_line(str(SAVE_FILE))
+	save_file.close()
+	
+	save_string_replace('$SF_CR', str(StatsManager.SYSTEMS_FIXED))
+	save_string_replace('$SM_CR', str(StatsManager.SYSTEMS_MALFUNCTIONED))
+	save_string_replace('$QWFS_CR', str(StatsManager.ATTEMPTS_QUITTING_WHILE_FIXING_SYSTEM))
+	save_string_replace('$CSP_CR', str(StatsManager.SHIFT_PERCENT_CHECKS))
+	save_string_replace('$M_CR', '$'+str(StatsManager.SHIFT_PAY))
+	
+	save_string_replace('$SF', str(SAVE_FILE.SF))
+	save_string_replace('$SM', str(SAVE_FILE.SM))
+	save_string_replace('$QWFS', str(SAVE_FILE.QWFS))
+	save_string_replace('$CSP', str(SAVE_FILE.CSP))
+	save_string_replace('$M', '$'+str(SAVE_FILE.M))
+	
+	return SAVE_STRING
+
+func save_string_replace(what='', with=''):
+	SAVE_STRING = SAVE_STRING.replace(what, with)

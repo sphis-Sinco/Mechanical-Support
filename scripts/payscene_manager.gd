@@ -22,6 +22,8 @@ func randomStats(minimum = 0, maximum = 20):
 @export var Scene_AnimationPlayer : AnimationPlayer
 @export var Monitor : Node3D
 
+@export var SaveText : RichTextLabel
+
 var is_web = OS.get_name() == 'Web'
 
 # Called when the node enters the scene tree for the first time.
@@ -30,9 +32,9 @@ func _ready():
 	if is_web:
 		Monitor.visible = false
 	
-	calc_pay()
-	
 	if not SystemsManager.SEEN_PAY:
+		SystemsManager.SAVE_STRING = SaveText.text
+		calc_pay()
 		SAP_play('grabSlip')
 	else:
 		$"../Close".play()
@@ -51,6 +53,8 @@ func SAP(anim_name):
 	match anim_name:
 		'grabSlip':
 			SystemsManager.SEEN_PAY = true
+			SystemsManager.load_save()
+			SystemsManager.save()
 		'openComputer':
 			get_tree().change_scene_to_file('res://scenes/save.tscn')
 

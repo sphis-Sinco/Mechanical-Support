@@ -26,8 +26,13 @@ func _ready():
 	tutorial.visible = not SystemsManager.SEEN_TUTORIAL
 	if not SystemsManager.SEEN_TUTORIAL:
 		Tutorial_AnimPlayer.play("tutorial")
-	
-	Camera_AnimationPlayer.play('monitor-close')
+
+	if SystemsManager.IN_PORTABLE_MONITOR:
+		SystemsManager.IN_PORTABLE_MONITOR = false
+		print('Portable monitor close')
+		Camera_AnimationPlayer.play('monitor-close-portable')
+	else:
+		Camera_AnimationPlayer.play('monitor-close')
 	CAP_finished = false
 	
 	$"../Close".play()
@@ -51,7 +56,7 @@ func error_sfx():
 func CAPF(anim_name):
 	CAP_finished = true
 	
-	if anim_name == 'monitor-open':
+	if anim_name.begins_with('monitor-open'):
 		get_tree().change_scene_to_file("res://scenes/computer.tscn")
 	elif anim_name.ends_with('-back'):
 		get_tree().change_scene_to_file("res://scenes/pay_scene.tscn")
@@ -87,8 +92,11 @@ func _process(_delta):
 			
 			if not SystemsManager.SEEN_TUTORIAL and CURRENT_SCENE == SCENE_MONITOR:
 				Tutorial_AnimPlayer.play("skip")
-					
+			
 			switchScene('open', SCENE_MONITOR)
+		elif Input.is_action_just_released("back"):
+			SystemsManager.IN_PORTABLE_MONITOR = true
+			switchScene('open-portable', SCENE_MONITOR)
 
 func set_looking_at_newspaper(value):
 	NPAP_finished = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://csr1ejw5ooaqj"]
+[gd_scene load_steps=24 format=3 uid="uid://csr1ejw5ooaqj"]
 
 [ext_resource type="Script" uid="uid://dbt6ve7stw33p" path="res://scripts/payscene_manager.gd" id="1_gorn2"]
 [ext_resource type="PackedScene" uid="uid://bmf3w48esake1" path="res://models/payment_slip/payment_slip.tscn" id="2_j7w46"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://wbhbvkm7n8qc" path="res://assets/shaders/posterization test.gdshader" id="4_kj7f2"]
 [ext_resource type="AudioStream" uid="uid://dwp366nsefwdu" path="res://assets/sounds/paper-rustle-81855.mp3" id="5_kj7f2"]
 [ext_resource type="AudioStream" uid="uid://b4k6c6flalq18" path="res://assets/sounds/old-pc-monitor-switch-off-8575.mp3" id="7_7v6ph"]
+[ext_resource type="PackedScene" uid="uid://bjkxds0uqf1bg" path="res://scenes/save.tscn" id="8_04c0h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v6ph"]
 albedo_color = Color(0, 0, 0, 1)
@@ -123,6 +124,57 @@ tracks/7/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_04c0h"]
+resource_name = "closeComputer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Home/homeDesk:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.407843, 0.184314, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Home/Payment_Slip:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Home/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(0.965936, 1),
+"update": 0,
+"values": [Vector3(-1, -0.11, -0.12), Vector3(0, 0, 0.613307)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Home/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(5.85634, 1),
+"update": 0,
+"values": [Vector3(0, 0.44855, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_j7w46"]
 resource_name = "grabSlip"
 length = 2.0
@@ -211,6 +263,57 @@ tracks/6/keys = {
 "values": [Color(0, 0, 0, 1), Color(0.408833, 0.182655, 1.92523e-07, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_7v6ph"]
+resource_name = "openComputer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Home/homeDesk:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.407843, 0.184314, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Home/Payment_Slip:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Home/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.54912, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.613307), Vector3(-1, -0.11, -0.12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Home/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(0.203063, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.322886, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_i2vvp"]
 resource_name = "tossSlip"
 length = 0.3
@@ -263,108 +366,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_7v6ph"]
-resource_name = "openComputer"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Home/homeDesk:material:albedo_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.407843, 0.184314, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Home/Payment_Slip:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Home/Camera3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.54912, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.613307), Vector3(-1, -0.11, -0.12)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Home/Camera3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.733333),
-"transitions": PackedFloat32Array(0.203063, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.322886, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_04c0h"]
-resource_name = "closeComputer"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Home/homeDesk:material:albedo_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.407843, 0.184314, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Home/Payment_Slip:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Home/Camera3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 1),
-"transitions": PackedFloat32Array(0.965936, 1),
-"update": 0,
-"values": [Vector3(-1, -0.11, -0.12), Vector3(0, 0, 0.613307)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Home/Camera3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(5.85634, 1),
-"update": 0,
-"values": [Vector3(0, 0.44855, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xuga7"]
 _data = {
 &"RESET": SubResource("Animation_hfxe2"),
@@ -400,11 +401,12 @@ size = Vector2(1280, 720)
 
 [node name="PayScene" type="Node2D"]
 
-[node name="Payscene manager" type="Node" parent="." node_paths=PackedStringArray("PaymentLabel", "Scene_AnimationPlayer", "Monitor")]
+[node name="Payscene manager" type="Node" parent="." node_paths=PackedStringArray("PaymentLabel", "Scene_AnimationPlayer", "Monitor", "SaveText")]
 script = ExtResource("1_gorn2")
 PaymentLabel = NodePath("../SubViewportContainer/SubViewport/Home/Payment_Slip/Label3D")
 Scene_AnimationPlayer = NodePath("../SubViewportContainer/SubViewport/Home/AnimationPlayer")
 Monitor = NodePath("../SubViewportContainer/SubViewport/Home/Monitor")
+SaveText = NodePath("../Computer/ColorRect/RichTextLabel")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -536,3 +538,15 @@ stream = ExtResource("5_kj7f2")
 
 [node name="Close" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_7v6ph")
+
+[node name="Computer" parent="." instance=ExtResource("8_04c0h")]
+visible = false
+position = Vector2(590, 922)
+
+[node name="Open" parent="Computer" index="3"]
+stream = null
+
+[node name="Blip" parent="Computer" index="4"]
+stream = null
+
+[editable path="Computer"]

@@ -10,6 +10,14 @@ var spacing = '-----------------------------------------------------------------
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	TextInput.visible = true
+	
+	if SystemsManager.IN_PORTABLE_MONITOR:
+		TerminalText.text += 'Portable Monitor\n'
+	elif SystemsManager.SYSTEM_PRIVATE_COMPUTERS == SystemsManager.STAT_MALFUNCTIONAL:
+		TerminalText.text = '<ERROR PCSIM>\nThis computer cannot run properly\n\nThis could potentially be because of a system sabotage or malfunction\n\n\n\nIf that is not the case make sure to report this to Taria Pelpa or Hopo Incorporated'
+		TextInput.visible = false
+	
 	AnimPlayer.connect('animation_finished', animationPlayer_finishedAnimation)
 	AnimPlayer.play('open')
 	
@@ -47,6 +55,12 @@ func fixed_sfx():
 func _process(_delta):
 	if SystemsManager.audio_light.volume_db > -20:
 		SystemsManager.audio_light.volume_db -= 2
+	
+	if SystemsManager.SYSTEM_PRIVATE_COMPUTERS == SystemsManager.STAT_MALFUNCTIONAL and not SystemsManager.IN_PORTABLE_MONITOR:
+		AnimPlayer.play('close')
+		SystemsManager.SYSTEM_IN_REPAIR = ''
+		SystemsManager.SYSTEM_REPAIRING = false
+		SystemsManager.SYSTEM_REPAIR_TICKS = 0
 
 @onready var blip = $"../Blip"
 
@@ -92,8 +106,13 @@ func input_command(command):
 				elif arguments.size() == 3:
 					response += 'Use "_" or "-" for systems with spaces'
 				else:
-					response += 'The requested system is being fixed...'
-					fix_command(arguments)
+					match arguments[1].to_lower().replace('_', ' ').replace('-', ' '):
+						'hvac', 'office computers', 'private computers', 'printer', 'telecommunication', 'manufacturing':
+							response += 'The requested system is being fixed...'
+							fix_command(arguments)
+						_:
+							response += 'The requested system is an unknown system'
+				
 		
 		'quit':
 			if SystemsManager.SYSTEM_REPAIRING:
@@ -117,7 +136,6 @@ func input_command(command):
 	
 	if command.to_lower() == 'quit' and not SystemsManager.SYSTEM_REPAIRING:
 		AnimPlayer.play('close')
-		
 
 func animationPlayer_finishedAnimation(anim_name):
 	if anim_name == 'close' and not shift_done:
@@ -127,7 +145,12 @@ func animationPlayer_finishedAnimation(anim_name):
 
 func fix_command(arguments):
 	SystemsManager.SYSTEM_IN_REPAIR = arguments[1].replace('_', ' ').replace('-', ' ')
-	SystemsManager.SYSTEM_REPAIR_TICKS = randi_range(SystemsManager.SYSTEM_REPAIR_TICKS_MIN, SystemsManager.SYSTEM_REPAIR_TICKS_MAX)
+	
+	if SystemsManager.SYSTEM_PRIVATE_COMPUTERS == SystemsManager.STAT_MALFUNCTIONAL:
+		SystemsManager.SYSTEM_REPAIR_TICKS = randi_range(SystemsManager.SYSTEM_REPAIR_TICKS_MIN_PORTABLE, SystemsManager.SYSTEM_REPAIR_TICKS_MAX_PORTABLE)
+	else:
+		SystemsManager.SYSTEM_REPAIR_TICKS = randi_range(SystemsManager.SYSTEM_REPAIR_TICKS_MIN, SystemsManager.SYSTEM_REPAIR_TICKS_MAX)
+	
 	SystemsManager.SYSTEM_REPAIR_STARTING_TICKS = SystemsManager.SYSTEM_REPAIR_TICKS
 	SystemsManager.sys_rep_update()
 	

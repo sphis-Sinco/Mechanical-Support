@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dojbngi0mh43c"]
+
+[ext_resource type="PackedScene" uid="uid://ftudxbl174tf" path="res://models/SOCORDIS/SOCORDIS.gltf" id="1_4y7cc"]
+[ext_resource type="Script" uid="uid://876m81rkbnc4" path="res://scripts/SOCORDIS_manager.gd" id="2_7131w"]
+
+[node name="SOCORDIS" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_4y7cc")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="blockbench_export/Node/cam/cube2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000626266, 0.0619822, -0.221268)
+light_color = Color(1, 0, 0, 1)
+
+[node name="AnimationPlayer" parent="blockbench_export" index="1"]
+autoplay = "watching"
+
+[node name="SOCORDIS Manager" type="Node" parent="." node_paths=PackedStringArray("AnimPlayer")]
+script = ExtResource("2_7131w")
+AnimPlayer = NodePath("../blockbench_export/AnimationPlayer")
+
+[editable path="blockbench_export"]

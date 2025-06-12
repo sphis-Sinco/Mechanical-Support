@@ -43,9 +43,8 @@ func _process(_delta):
 @onready var blip = $"../Blip"
 
 func _unhandled_input(event):
-	if event.is_action_released("accept") and TextInput.text.replace('\n', '').length() > 0:
+	if event.is_action_released("accept") and TextInput.text.length() > 0:
 		input_command(TextInput.text.replace('\n', ''))
-		blip.play()
 	elif event.is_action_released("accept"):
 		if TextInput.text.ends_with('\n'):
 			TextInput.text = TextInput.text.replace('\n', '')
@@ -53,6 +52,7 @@ func _unhandled_input(event):
 func input_command(command):
 	var response = ''
 	print(command)
+	blip.play()
 	
 	match command.to_lower().split(' ')[0]:
 		'help':
@@ -96,8 +96,8 @@ func input_command(command):
 		
 		'shift':
 			response += 'You have been here for '
-			response += SystemsManager.SHIFT_PERCENT
-			response += ' of your shift time.'
+			response += str(SystemsManager.SHIFT_PERCENT)
+			response += '% of your shift time.'
 			
 			StatsManager.SHIFT_PERCENT_CHECKS += 1
 		

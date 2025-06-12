@@ -1,0 +1,566 @@
+[gd_scene load_steps=35 format=3 uid="uid://db86604lj77fp"]
+
+[ext_resource type="PackedScene" uid="uid://lcq26ft38s4f" path="res://models/monitor/monitor.tscn" id="1_3e7dm"]
+[ext_resource type="Shader" uid="uid://byfph6jqvo55x" path="res://GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="2_jwaux"]
+[ext_resource type="AudioStream" uid="uid://dl00n0vnyvtic" path="res://assets/sounds/error-83494.mp3" id="2_qphb6"]
+[ext_resource type="Shader" uid="uid://wbhbvkm7n8qc" path="res://assets/shaders/posterization test.gdshader" id="3_7jj4f"]
+[ext_resource type="Script" uid="uid://b7u523lmtuhmb" path="res://scripts/office_manager.gd" id="7_2knxt"]
+[ext_resource type="AudioStream" uid="uid://bxmpr2apksupd" path="res://assets/sounds/ac-unit-67600.mp3" id="7_fmddn"]
+[ext_resource type="AudioStream" uid="uid://3eoqsf8p2x1t" path="res://assets/sounds/factory-fluorescent-light-buzz-6871.mp3" id="8_gdafm"]
+[ext_resource type="AudioStream" uid="uid://b4k6c6flalq18" path="res://assets/sounds/old-pc-monitor-switch-off-8575.mp3" id="9_gdafm"]
+[ext_resource type="AudioStream" uid="uid://dwp366nsefwdu" path="res://assets/sounds/paper-rustle-81855.mp3" id="10_in4ui"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvmi2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_fmddn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.065, -0.587)]
+}
+
+[sub_resource type="Animation" id="Animation_ujkv6"]
+resource_name = "left"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gdafm"]
+resource_name = "left-monitor"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o23kw"]
+resource_name = "monitor"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kviqm"]
+resource_name = "monitor-close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.296706, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.065, -0.587), Vector3(0, 0, 0.807616)]
+}
+
+[sub_resource type="Animation" id="Animation_2knxt"]
+resource_name = "monitor-left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jp1e5"]
+resource_name = "monitor-open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.296706, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.807616), Vector3(0, 0.065, -0.587)]
+}
+
+[sub_resource type="Animation" id="Animation_in4ui"]
+resource_name = "monitor-right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wruke"]
+resource_name = "right"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6hbky"]
+resource_name = "right-monitor"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in4ui"]
+_data = {
+&"RESET": SubResource("Animation_fmddn"),
+&"left": SubResource("Animation_ujkv6"),
+&"left-monitor": SubResource("Animation_gdafm"),
+&"monitor": SubResource("Animation_o23kw"),
+&"monitor-close": SubResource("Animation_kviqm"),
+&"monitor-left": SubResource("Animation_2knxt"),
+&"monitor-open": SubResource("Animation_jp1e5"),
+&"monitor-right": SubResource("Animation_in4ui"),
+&"right": SubResource("Animation_wruke"),
+&"right-monitor": SubResource("Animation_6hbky")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0wcf"]
+albedo_color = Color(0.408833, 0.182655, 1.92523e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2knxt"]
+
+[sub_resource type="Animation" id="Animation_07d2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jobNewsPaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jobNewsPaper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.22879, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Paper:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k578b"]
+resource_name = "pickup"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jobNewsPaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.11, 0.421, -0.006)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jobNewsPaper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.22879, 0), Vector3(0.963422, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Paper:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gnmmx"]
+resource_name = "putdown"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jobNewsPaper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.11, 0.421, -0.006), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jobNewsPaper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.963422, 1.5708, 0), Vector3(0, 2.22879, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Paper:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jp1e5"]
+_data = {
+&"RESET": SubResource("Animation_07d2k"),
+&"pickup": SubResource("Animation_k578b"),
+&"putdown": SubResource("Animation_gnmmx")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qphb6"]
+shader = ExtResource("2_jwaux")
+shader_parameter/SCREEN_WIDTH = 1280.0
+shader_parameter/COLOR_FACTOR = 10.0
+shader_parameter/DITHERING_STRENTH = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_hub07"]
+size = Vector2(1280, 720)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwaux"]
+shader = ExtResource("3_7jj4f")
+shader_parameter/SCREEN_WIDTH = 1920.0
+shader_parameter/RED_COMPONENT = 7.0
+shader_parameter/GREEN_COMPONENT = 7.0
+shader_parameter/BLUE_COMPONENT = 7.0
+
+[sub_resource type="Animation" id="Animation_ja80a"]
+resource_name = "tutorial"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_alkg7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3hjlj"]
+resource_name = "skip"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3hjlj"]
+_data = {
+&"RESET": SubResource("Animation_alkg7"),
+&"skip": SubResource("Animation_3hjlj"),
+&"tutorial": SubResource("Animation_ja80a")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Office" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="office" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office"]
+flip_faces = true
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_xvmi2")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Office"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.98255, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.587)
+fov = 30.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Office/Camera3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_in4ui")
+}
+
+[node name="deskMonitor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.862673, -1.20747)
+material = SubResource("StandardMaterial3D_n0wcf")
+
+[node name="Monitor" parent="SubViewportContainer/SubViewport/Office" instance=ExtResource("1_3e7dm")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.358, -1)
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Office/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.875, 0.32)
+modulate = Color(0, 1, 0, 1)
+font_size = 8
+outline_size = 0
+
+[node name="deskLeft" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.705, 0.799)
+size = Vector3(1, 0.898926, 1)
+material = SubResource("StandardMaterial3D_n0wcf")
+
+[node name="jobNewsPaper" type="Node3D" parent="SubViewportContainer/SubViewport/Office/deskLeft"]
+transform = Transform3D(-0.611531, 0, 0.791221, 0, 1, 0, -0.791221, 0, -0.611531, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Office/deskLeft/jobNewsPaper"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, -0.225708, 0.457385, -0.232252)
+modulate = Color(0, 0, 0, 1)
+text = "Jobs are disappearing! (4/8/20xx)
+
+Ever since the incident people have
+not been able to find jobs that were
+previously availible.
+
+Theorists suppose that our new
+leaders from the incident are the
+cause and that \"They are stopping
+jobs to stop rebellion.\"
+
+Many agree with this statement.
+
+Here is a list of jobs that has
+disappeared:
+- Nightshifts
+- Soldiers
+- Medics"
+font_size = 8
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="newsPaper" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office/deskLeft/jobNewsPaper"]
+transform = Transform3D(0.5, 0, 0, 0, 0.01, 0, 0, 0, 0.5, 0, 0.45, 0)
+size = Vector3(1, 0.898926, 1)
+material = SubResource("StandardMaterial3D_2knxt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Office/deskLeft"]
+libraries = {
+&"": SubResource("AnimationLibrary_jp1e5")
+}
+
+[node name="deskRight" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49579, -0.705, 0.799)
+size = Vector3(1, 0.898926, 1)
+material = SubResource("StandardMaterial3D_n0wcf")
+
+[node name="dithering" type="MeshInstance2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_qphb6")
+position = Vector2(640, 360)
+mesh = SubResource("QuadMesh_hub07")
+
+[node name="posterization" type="MeshInstance2D" parent="SubViewportContainer"]
+material = SubResource("ShaderMaterial_jwaux")
+position = Vector2(640, 360)
+mesh = SubResource("QuadMesh_hub07")
+
+[node name="Office Manager" type="Node" parent="." node_paths=PackedStringArray("Camera_AnimationPlayer", "NewsPaper_AnimationPlayer")]
+script = ExtResource("7_2knxt")
+Camera_AnimationPlayer = NodePath("../SubViewportContainer/SubViewport/Office/Camera3D/AnimationPlayer")
+NewsPaper_AnimationPlayer = NodePath("../SubViewportContainer/SubViewport/Office/deskLeft/AnimationPlayer")
+
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qphb6")
+volume_db = -5.0
+pitch_scale = 0.25
+
+[node name="HVAC" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fmddn")
+volume_db = -10.0
+
+[node name="Light" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_gdafm")
+
+[node name="Close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_gdafm")
+
+[node name="Paper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_in4ui")
+
+[node name="Tutorial" type="Label" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 721.0
+theme_override_font_sizes/font_size = 32
+text = "Press left or right to move.
+Press enter to interact with objects."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_3hjlj")
+}

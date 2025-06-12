@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://lcq26ft38s4f"]
+
+[ext_resource type="PackedScene" uid="uid://ccnahrft3ihb5" path="res://models/monitor/monitor.gltf" id="1_xrdv4"]
+
+[node name="Monitor" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_xrdv4")]

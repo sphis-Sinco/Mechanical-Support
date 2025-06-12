@@ -1,0 +1,330 @@
+[gd_scene load_steps=18 format=3 uid="uid://csr1ejw5ooaqj"]
+
+[ext_resource type="Script" uid="uid://dbt6ve7stw33p" path="res://scripts/payscene_manager.gd" id="1_gorn2"]
+[ext_resource type="PackedScene" uid="uid://bmf3w48esake1" path="res://models/payment_slip/payment_slip.tscn" id="2_j7w46"]
+[ext_resource type="Shader" uid="uid://byfph6jqvo55x" path="res://GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="3_xuga7"]
+[ext_resource type="Shader" uid="uid://wbhbvkm7n8qc" path="res://assets/shaders/posterization test.gdshader" id="4_kj7f2"]
+[ext_resource type="AudioStream" uid="uid://dwp366nsefwdu" path="res://assets/sounds/paper-rustle-81855.mp3" id="5_kj7f2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v6ph"]
+albedo_color = Color(0, 0, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04c0h"]
+albedo_color = Color(0, 1, 1, 1)
+rim_enabled = true
+rim_tint = 1.0
+ao_light_affect = 1.0
+refraction_scale = 1.0
+shadow_to_opacity = true
+grow_amount = 1.094
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj7f2"]
+albedo_color = Color(0.37, 0.222, 0.148, 1)
+
+[sub_resource type="Animation" id="Animation_j7w46"]
+resource_name = "grabSlip"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Home/Payment_Slip:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7333, 1.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(1.529, -1.695, 1), Vector3(0, 0, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Home/Payment_Slip:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.785398), Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Home/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.15), Vector3(0, 0, 0.613307)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Home/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.266667, 1.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector3(-0.785398, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Paper:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../Paper:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7333, 1.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-20.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hfxe2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Home/Payment_Slip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Home/Payment_Slip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Home/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.613307)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Home/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Paper:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../Paper:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xuga7"]
+_data = {
+&"RESET": SubResource("Animation_hfxe2"),
+&"grabSlip": SubResource("Animation_j7w46")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuga7"]
+albedo_color = Color(0.408833, 0.182655, 1.92523e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2vvp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2vvp"]
+shader = ExtResource("3_xuga7")
+shader_parameter/SCREEN_WIDTH = 1280.0
+shader_parameter/COLOR_FACTOR = 10.0
+shader_parameter/DITHERING_STRENTH = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_7v6ph"]
+size = Vector2(1280, 720)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04c0h"]
+shader = ExtResource("4_kj7f2")
+shader_parameter/SCREEN_WIDTH = 1920.0
+shader_parameter/RED_COMPONENT = 14.0
+shader_parameter/GREEN_COMPONENT = 7.0
+shader_parameter/BLUE_COMPONENT = 14.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_rfiyq"]
+size = Vector2(1280, 720)
+
+[node name="PayScene" type="Node2D"]
+
+[node name="Payscene manager" type="Node" parent="." node_paths=PackedStringArray("PaymentLabel", "Scene_AnimationPlayer")]
+script = ExtResource("1_gorn2")
+PaymentLabel = NodePath("../SubViewportContainer/SubViewport/Home/Payment_Slip/Label3D")
+Scene_AnimationPlayer = NodePath("../SubViewportContainer/SubViewport/Home/AnimationPlayer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Home" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="outside" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26047, 0)
+flip_faces = true
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_7v6ph")
+
+[node name="windowGlass" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49617, -2.53513)
+transparency = 0.5
+size = Vector3(1, 1, 0.01)
+material = SubResource("StandardMaterial3D_04c0h")
+
+[node name="home" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13024, 0)
+flip_faces = true
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_kj7f2")
+
+[node name="window" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home/home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.634065, -2.77737)
+operation = 2
+material = SubResource("StandardMaterial3D_kj7f2")
+
+[node name="Payment_Slip" parent="SubViewportContainer/SubViewport/Home" instance=ExtResource("2_j7w46")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Home/Payment_Slip"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, -0.43, 0.063, -0.185)
+modulate = Color(0, 0, 0, 1)
+text = "Shift pay: $100
+
+Shift notes:
+- Management appriciates the many fixed of malfunctioned systems
+- Management doesn't appriciate the constant checking of how long you've been doing your shift
+"
+font_size = 8
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+width = 330.0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.613307)
+fov = 90.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Home"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_xuga7")
+}
+
+[node name="homeDesk" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863, -1.50085)
+size = Vector3(5, 1, 3.38477)
+material = SubResource("StandardMaterial3D_xuga7")
+
+[node name="homeNewsPaper" type="Node3D" parent="SubViewportContainer/SubViewport/Home/homeDesk"]
+transform = Transform3D(1.98289, 0, 0.261052, 0, 2, 0, -0.261052, 0, 1.98289, 0, -0.4, 1.1)
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Home/homeDesk/homeNewsPaper"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, -0.225708, 0.457385, -0.232252)
+modulate = Color(0, 0, 0, 1)
+text = "The july wall has been constructed.
+(8/2/20xx)
+
+The wall advertized in July has
+been constructed.
+
+Protecting us in Vesathu from the 
+Saira war proposed by their leader
+in July.
+
+Controversy continues at a rapid
+pace since the new ruling from Late
+March to Early April.
+
+It also appears that the army is
+being reformed with previous army
+members and new members from
+our neighboor city Sirolel."
+font_size = 8
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="newsPaper" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Home/homeDesk/homeNewsPaper"]
+transform = Transform3D(0.5, 0, 0, 0, 0.01, 0, 0, 0, 0.5, 0, 0.45, 0)
+size = Vector3(1, 0.898926, 1)
+material = SubResource("StandardMaterial3D_i2vvp")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Home"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.505, 0.354462)
+light_energy = 10.0
+
+[node name="dithering" type="MeshInstance2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_i2vvp")
+position = Vector2(640, 360)
+mesh = SubResource("QuadMesh_7v6ph")
+
+[node name="posterization" type="MeshInstance2D" parent="SubViewportContainer"]
+material = SubResource("ShaderMaterial_04c0h")
+position = Vector2(640, 360)
+mesh = SubResource("QuadMesh_rfiyq")
+
+[node name="Paper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kj7f2")

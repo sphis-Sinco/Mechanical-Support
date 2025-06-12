@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmf3w48esake1"]
+
+[ext_resource type="PackedScene" uid="uid://d31ofy70u0u6x" path="res://models/payment_slip/payment_slip.gltf" id="1_py7gw"]
+
+[node name="Payment_Slip" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_py7gw")]

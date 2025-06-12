@@ -38,6 +38,8 @@ func _ready():
 		SystemsManager.audio_light = $"../Light"
 	
 	SystemsManager.error_sfx.connect(error_sfx)
+	
+	SystemsManager.shift_ended.connect(shift_ended)
 
 @onready var error = $"../Error"
 
@@ -51,6 +53,8 @@ func CAPF(anim_name):
 	
 	if anim_name == 'monitor-open':
 		get_tree().change_scene_to_file("res://scenes/computer.tscn")
+	elif anim_name.ends_with('-back'):
+		get_tree().change_scene_to_file("res://scenes/pay_scene.tscn")
 
 func NPAPF(_anim_name):
 	NPAP_finished = true
@@ -96,3 +100,8 @@ func switchScene(newScene, requiredScene):
 		Camera_AnimationPlayer.play(requiredScene+'-'+newScene)
 		CAP_finished = false
 		print('Switched scene to ', newScene)
+
+func shift_ended():
+	switchScene('back', SCENE_LEFT)
+	switchScene('back', SCENE_MONITOR)
+	switchScene('back', SCENE_RIGHT)

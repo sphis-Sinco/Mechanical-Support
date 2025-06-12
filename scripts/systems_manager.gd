@@ -46,6 +46,7 @@ var audio_light : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 var audio_hvac : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 
 var SEEN_TUTORIAL = false
+var SEEN_PAY = false
 
 func _ready():
 	sys_rep_update()
@@ -61,7 +62,7 @@ func _process(_delta):
 	if SHIFT_TICK == SHIFT_TIME and not SHIFT_OVER:
 		print('Shift over!')
 		SHIFT_OVER = true
-		get_tree().change_scene_to_file("res://scenes/pay_scene.tscn")
+		shift_ended.emit()
 	
 	if not SHIFT_OVER:
 		if not audio_light.playing:
@@ -178,3 +179,5 @@ signal system_repair_not_required(system_name)
 signal system_repair_update(system_name, percent)
 
 signal error_sfx()
+
+signal shift_ended()

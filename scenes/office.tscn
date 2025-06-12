@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://db86604lj77fp"]
+[gd_scene load_steps=38 format=3 uid="uid://db86604lj77fp"]
 
 [ext_resource type="PackedScene" uid="uid://lcq26ft38s4f" path="res://models/monitor/monitor.tscn" id="1_3e7dm"]
 [ext_resource type="Shader" uid="uid://byfph6jqvo55x" path="res://GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="2_jwaux"]
@@ -208,17 +208,68 @@ tracks/0/keys = {
 "values": [Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qg43x"]
+resource_name = "monitor-back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ywr3"]
+resource_name = "left-back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t1nwb"]
+resource_name = "right-back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_in4ui"]
 _data = {
 &"RESET": SubResource("Animation_fmddn"),
 &"left": SubResource("Animation_ujkv6"),
+&"left-back": SubResource("Animation_8ywr3"),
 &"left-monitor": SubResource("Animation_gdafm"),
 &"monitor": SubResource("Animation_o23kw"),
+&"monitor-back": SubResource("Animation_qg43x"),
 &"monitor-close": SubResource("Animation_kviqm"),
 &"monitor-left": SubResource("Animation_2knxt"),
 &"monitor-open": SubResource("Animation_jp1e5"),
 &"monitor-right": SubResource("Animation_in4ui"),
 &"right": SubResource("Animation_wruke"),
+&"right-back": SubResource("Animation_t1nwb"),
 &"right-monitor": SubResource("Animation_6hbky")
 }
 
@@ -369,22 +420,6 @@ shader_parameter/RED_COMPONENT = 7.0
 shader_parameter/GREEN_COMPONENT = 7.0
 shader_parameter/BLUE_COMPONENT = 7.0
 
-[sub_resource type="Animation" id="Animation_ja80a"]
-resource_name = "tutorial"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(4, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_alkg7"]
 length = 0.001
 tracks/0/type = "value"
@@ -411,6 +446,22 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ja80a"]
+resource_name = "tutorial"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]

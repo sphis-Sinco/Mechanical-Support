@@ -21,9 +21,17 @@ func _ready():
 		SystemsManager.audio_hvac = $"../HVAC"
 	if SystemsManager.audio_light == null or not SystemsManager.audio_light.playing:
 		SystemsManager.audio_light = $"../Light"
+	
+	SystemsManager.shift_ended.connect(shift_ended)
 
 @onready var error = $"../Error"
 @onready var fixed = $"../Fixed"
+
+var shift_done = false
+
+func shift_ended():
+	shift_done = true
+	AnimPlayer.play('close')
 
 func error_sfx():
 	if error.playing:
@@ -112,8 +120,10 @@ func input_command(command):
 		
 
 func animationPlayer_finishedAnimation(anim_name):
-	if anim_name == 'close':
+	if anim_name == 'close' and not shift_done:
 		get_tree().change_scene_to_file("res://scenes/office.tscn")
+	elif anim_name == 'close' and shift_done:
+		get_tree().change_scene_to_file("res://scenes/pay_scene.tscn")
 
 func fix_command(arguments):
 	SystemsManager.SYSTEM_IN_REPAIR = arguments[1].replace('_', ' ').replace('-', ' ')
